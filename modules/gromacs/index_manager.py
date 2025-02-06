@@ -4,7 +4,10 @@ import logging
 from typing import List
 from modules.utils.shared.file_utils import check_directory_exists
 from config.paths import TEMP_DIR
+<<<<<<< HEAD
 import re
+=======
+>>>>>>> 91758eb (cleaned up)
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -26,7 +29,10 @@ class GromacsIndexManager:
         check_directory_exists(output_dir, make_dirs=True)
         self.index_file_path = os.path.join(output_dir, self.index_file)
         self.poly_name = poly_name
+<<<<<<< HEAD
         self.poly_name = "UNL"
+=======
+>>>>>>> 91758eb (cleaned up)
         self.ion_names = ion_names
 
         cmin, cmax = self.parse_gro_for_polymer_carbons(
@@ -34,6 +40,7 @@ class GromacsIndexManager:
         )
         self.first_carbon = cmin
         self.last_carbon = cmax
+<<<<<<< HEAD
     def _get_existing_group_count(self) -> int:
         """
         Runs `gmx make_ndx` and extracts the number of existing groups
@@ -58,6 +65,11 @@ class GromacsIndexManager:
             logger.error(f"Error retrieving group count: {e}")
             return 4  # Default fallback
     def _filter_existing_ions(self) -> List[str]:
+=======
+
+    def _filter_existing_ions(self) -> List[str]:
+
+>>>>>>> 91758eb (cleaned up)
         with open(self.gro_file, "r") as f:
             gro_contents = f.read()
 
@@ -71,20 +83,53 @@ class GromacsIndexManager:
 
         existing_ions = self._filter_existing_ions()
 
+<<<<<<< HEAD
         # Dynamically set the first available group number
         next_group_num = self._get_existing_group_count() 
         instructions = []
+=======
+        instructions = []
+        next_group_num = 4
+
+>>>>>>> 91758eb (cleaned up)
         instructions.append(f"r {self.poly_name}")
         instructions.append(f"name {next_group_num} Polymer")
         polymer_group_num = next_group_num
         next_group_num += 1
 
+<<<<<<< HEAD
         if self.first_carbon is not None and self.last_carbon is not None:
             instructions.append(
                 f"a {self.first_carbon} | a {self.last_carbon}  & r {self.poly_name}"
             )
             instructions.append(f"name {next_group_num} Polymer_Carbons_Start_and_End")
             next_group_num += 1
+=======
+        if existing_ions:
+            ion_string = " ".join(existing_ions)
+            instructions.append(f"r {ion_string}")
+            instructions.append(f"name {next_group_num} Ions")
+            ions_group_num = next_group_num
+            next_group_num += 1
+
+            instructions.append(f"0 & !{polymer_group_num} & !{ions_group_num}")
+            instructions.append(f"name {next_group_num} Solvent")
+            next_group_num += 1
+        else:
+
+            instructions.append(f"0 & !{polymer_group_num}")
+            instructions.append(f"name {next_group_num} Solvent")
+            next_group_num += 1
+
+        if self.first_carbon is not None and self.last_carbon is not None:
+
+            instructions.append(
+                f"a {self.first_carbon} |a {self.last_carbon}  & r {self.poly_name}"
+            )
+            instructions.append(f"name {next_group_num} Polymer_Carbons_Start_and_End")
+            next_group_num += 1
+
+>>>>>>> 91758eb (cleaned up)
         else:
             logger.warning(
                 "No polymer carbons found in .gro; skipping start/end carbon groups."
@@ -117,7 +162,11 @@ class GromacsIndexManager:
             lines = f.readlines()
 
         if len(lines) < 3:
+<<<<<<< HEAD
             return None, None
+=======
+            return None, None, None, None
+>>>>>>> 91758eb (cleaned up)
 
         try:
             atom_count = int(lines[1].strip())
@@ -127,7 +176,13 @@ class GromacsIndexManager:
         atom_lines = lines[2 : 2 + atom_count]
 
         min_carbon_index = None
+<<<<<<< HEAD
         max_carbon_index = None
+=======
+        min_carbon_name = None
+        max_carbon_index = None
+        max_carbon_name = None
+>>>>>>> 91758eb (cleaned up)
 
         for line in atom_lines:
             line_str = line.rstrip("\n")
@@ -139,6 +194,7 @@ class GromacsIndexManager:
             except ValueError:
                 continue
 
+<<<<<<< HEAD
             if residue_name == polymer_resname and atom_name[0].upper().startswith("C"):
                 if min_carbon_index is None or atom_index < min_carbon_index:
                     min_carbon_index = atom_index
@@ -147,3 +203,15 @@ class GromacsIndexManager:
                     max_carbon_index = atom_index
 
         return min_carbon_index, max_carbon_index
+=======
+            if residue_name == polymer_resname and atom_name.upper().startswith("C"):
+                if min_carbon_index is None or atom_index < min_carbon_index:
+                    min_carbon_index = atom_index
+                    min_carbon_name = atom_name
+
+                if max_carbon_index is None or atom_index > max_carbon_index:
+                    max_carbon_index = atom_index
+                    max_carbon_name = atom_name
+
+        return min_carbon_name, max_carbon_name
+>>>>>>> 91758eb (cleaned up)

@@ -27,7 +27,11 @@ from config.paths import (
     MAIN_CACHE_DIR,
     SHORT_POLYMER_BUILDING_BLOCKS_DIR,
 )
+<<<<<<< HEAD
 from typing import List, Tuple, Optional
+=======
+from typing import List
+>>>>>>> 91758eb (cleaned up)
 import time as time
 from abc import ABC, abstractmethod
 from modules.workflows.base_workflow import BaseWorkflow
@@ -111,6 +115,7 @@ class PolymerGeneratorWorkflow(BaseWorkflow):
     def _build_short_polymer(self, length: int):
         short_polymer_pdb = self.short_polymer_generator.generate_polymer(
             num_units=length,
+<<<<<<< HEAD
             output_name=None,
             output_dir=TEMP_DIR,
             overwrite=True,
@@ -365,6 +370,8 @@ class PolymerGeneratorWorkflow2(BaseWorkflow):
         short_polymer_pdb = self.short_polymer_generator.generate_polymer(
             num_units=length,
             output_name=None,
+=======
+>>>>>>> 91758eb (cleaned up)
             output_dir=TEMP_DIR,
             overwrite=True,
             save=True,
@@ -544,7 +551,10 @@ class PolymerGeneratorWorkflow2(BaseWorkflow):
         sections = parser.parse(gro_file)
         first_key = next(iter(sections))  # Get the first key
         gro_section = sections[first_key]
+<<<<<<< HEAD
         gro_handler = GroHandler()
+=======
+>>>>>>> 91758eb (cleaned up)
         gro_handler.process(gro_section)
         box_size = calculate_minimum_box_size_from_df(gro_handler.content, padding)
         gro_handler.box_dimensions = box_size

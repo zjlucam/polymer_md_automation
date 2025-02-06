@@ -7,10 +7,13 @@ from modules.utils.shared.calculation_utils import (
 )
 from config.constants import LengthUnits, MassUnits
 from modules.utils.shared.file_utils import file_type_check_wrapper
+<<<<<<< HEAD
 import logging
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+=======
+>>>>>>> 91758eb (cleaned up)
 
 
 class PackmolSolventBox(BasePackmolOperation):
@@ -30,7 +33,11 @@ class PackmolSolventBox(BasePackmolOperation):
             for dim in box_size_nm
         ]
 
+<<<<<<< HEAD
         logger.info(f"Box_size_angstrom: {box_size_angstrom}")
+=======
+        print("box_size_angstrom", box_size_angstrom)
+>>>>>>> 91758eb (cleaned up)
         num_molecules = calculate_num_particles(
             box_dimensions=box_size_angstrom,
             molecular_weight=solvent.molecular_weight,
@@ -38,7 +45,11 @@ class PackmolSolventBox(BasePackmolOperation):
             box_units=LengthUnits.ANGSTROM,
             mass_units=MassUnits.GRAM,
         )
+<<<<<<< HEAD
         logger.info(f"Number of molecules added: {num_molecules}")
+=======
+        print(num_molecules)
+>>>>>>> 91758eb (cleaned up)
         return {
             "output_file": output_file,
             "solvent_file": input_pdb,

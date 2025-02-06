@@ -496,13 +496,21 @@ def delete_directory(directory_path: str, verbose: bool = False, confirm: bool =
         )
         if user_input not in ["y", "yes"]:
             if verbose:
+<<<<<<< HEAD
                 logger.info(f"Deletion of '{directory_path}' canceled by user.")
+=======
+                print(f"Deletion of '{directory_path}' canceled by user.")
+>>>>>>> 91758eb (cleaned up)
             return
 
     try:
         shutil.rmtree(directory_path)
         if verbose:
+<<<<<<< HEAD
             logger.info(f"Directory '{directory_path}' has been deleted successfully.")
+=======
+            print(f"Directory '{directory_path}' has been deleted successfully.")
+>>>>>>> 91758eb (cleaned up)
     except Exception as e:
         raise RuntimeError(f"Failed to delete directory '{directory_path}': {e}")
 

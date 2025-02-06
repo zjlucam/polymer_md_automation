@@ -83,7 +83,10 @@ class BaseWorkflowStep:
         save_intermediate_gro: bool = False,
         save_intermediate_log: bool = False,
         verbose: bool = False,
+<<<<<<< HEAD
         additional_flags =None
+=======
+>>>>>>> 91758eb (cleaned up)
     ) -> str:
         """
         Run the workflow step.
@@ -133,7 +136,10 @@ class BaseWorkflowStep:
             input_tpr_path=grompp_output,
             output_name=output_prefix,
             verbose=verbose,
+<<<<<<< HEAD
             additional_flags = additional_flags,
+=======
+>>>>>>> 91758eb (cleaned up)
         )
 
         # Verify generated files

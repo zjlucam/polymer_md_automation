@@ -257,7 +257,10 @@ def get_gro_handler(
     gro_handler: GroHandler = GroHandler(),
 ):
     gro_handler = GroHandler()
+<<<<<<< HEAD
     parser = GromacsParser()
+=======
+>>>>>>> 91758eb (cleaned up)
     sections = parser.parse(gro_file)
     gro_section = next(iter(sections.values()))
     gro_handler.process(gro_section)
@@ -527,9 +530,18 @@ def validate_solute_gro_with_editconf(
 ) -> str:
     if not output_dir:
         output_dir = os.path.dirname(gro_file)
+<<<<<<< HEAD
     else:
         check_directory_exists(output_dir, make_dirs=True)
 
+=======
+        print("not new")
+        print(type(output_dir))
+    else:
+        check_directory_exists(output_dir, make_dirs=True)
+        print("new output dir")
+        print(output_dir)
+>>>>>>> 91758eb (cleaned up)
 
     gro_handler = get_gro_handler(gro_file)
     box_size = gro_handler.box_dimensions
@@ -545,7 +557,13 @@ def validate_solute_gro_with_editconf(
         return gro_file
     else:
         box_size = calculate_minimum_box_size_from_handler(gro_handler)
+<<<<<<< HEAD
 
+=======
+        print("TEST AGAIN !!!")
+        print(gro_file)
+        print(output_dir)
+>>>>>>> 91758eb (cleaned up)
         validated_solute_path = editconf.run(
             gro_file,
             output_dir,
@@ -575,13 +593,22 @@ def prepare_solvated_solute_box(
         box_size_nm=initial_box_size_nm,
     )
 
+<<<<<<< HEAD
+=======
+    print(output_dir)
+    print("finished editconf")
+>>>>>>> 91758eb (cleaned up)
     solvated_box = solvate.run(
         editconf_box_gro,
         solvent_gro_file,
         topol_file,
         output_dir,
     )
+<<<<<<< HEAD
 
+=======
+    print("finished solvate")
+>>>>>>> 91758eb (cleaned up)
     return solvated_box
 
 
@@ -848,7 +875,11 @@ def create_solvated_box(
         max_attempts=max_attempts,
     )
 
+<<<<<<< HEAD
 
+=======
+    print("NUM_MOLECULES")
+>>>>>>> 91758eb (cleaned up)
     return solvated_box
 
 

@@ -102,10 +102,17 @@ class GroHandler(BaseHandler):
 
         # Validate that all atoms and box dimensions are parsed correctly
         if len(self.atom_data) != self.num_atoms:
+<<<<<<< HEAD
             logger.error(
                 f"Expected {self.num_atoms} atoms but parsed {len(self.atom_data)}."
             )
 
+=======
+            print(self.atom_data.headers())
+            logger.error(
+                f"Expected {self.num_atoms} atoms but parsed {len(self.atom_data)}."
+            )
+>>>>>>> 91758eb (cleaned up)
             raise ValueError("Mismatch between expected and parsed number of atoms.")
 
         if self.box_dimensions is None:
@@ -146,7 +153,10 @@ class GroHandler(BaseHandler):
 
         # Add the atom count as the second line
         actual_num_atoms = len(self.atom_data)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 91758eb (cleaned up)
         if self.num_atoms != actual_num_atoms:
             logger.warning(
                 f"Mismatch between expected ({self.num_atoms}) and actual ({actual_num_atoms}) atom counts."

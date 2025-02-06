@@ -1,0 +1,9 @@
+; Include POLY_GMX.itp topology
+#include {itp_path}
+
+[ system ]
+ {resname}
+
+[ molecules ]
+; Compound        nmols
+ {resname}             1     

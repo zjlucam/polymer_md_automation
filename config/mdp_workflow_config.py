@@ -31,7 +31,11 @@ solvent_workflow.add_em_step(
     step_name="minim_2",
     workflow_step=workflow_step,
     template_path=os.path.join(PME_TEMPLATE_DIR, "em.mdp"),
+<<<<<<< HEAD
     base_params={"nsteps": "20000", "emtol": "100"},
+=======
+    base_params={"nsteps": "50000", "emtol": "100"},
+>>>>>>> 91758eb (cleaned up)
 )
 
 solvent_workflow.add_thermal_step(
@@ -84,7 +88,11 @@ polymer_workflow.add_em_step(
     step_name="minim_2_RF",
     workflow_step=workflow_step,
     template_path=os.path.join(RF_TEMPLATE_DIR, "em.mdp"),
+<<<<<<< HEAD
     base_params={"nsteps": "20000", "emtol": "100"},
+=======
+    base_params={"nsteps": "50000", "emtol": "100"},
+>>>>>>> 91758eb (cleaned up)
 )
 
 polymer_workflow.add_thermal_step(
@@ -92,7 +100,11 @@ polymer_workflow.add_thermal_step(
     workflow_step=workflow_step,
     template_path=os.path.join(RF_TEMPLATE_DIR, "nvt.mdp"),
     base_params={
+<<<<<<< HEAD
         "nsteps": "30000",
+=======
+        "nsteps": "100000",
+>>>>>>> 91758eb (cleaned up)
     },
 )
 
@@ -119,7 +131,11 @@ polymer_workflow.add_thermal_step(
     workflow_step=workflow_step,
     template_path=os.path.join(RF_TEMPLATE_DIR, "prod.mdp"),
     base_params={
+<<<<<<< HEAD
         "nsteps": "80000",
+=======
+        "nsteps": "50000",
+>>>>>>> 91758eb (cleaned up)
         "dt": "0.002",
     },
 )

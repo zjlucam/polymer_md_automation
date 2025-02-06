@@ -1,0 +1,23 @@
+; Run parameters
+integrator      = steep         ; Use the steepest descent algorithm
+emtol           = {emtol}       ; Stop minimization when the maximum force < 1000 kJ/mol/nm
+emstep          = 0.002          ; Initial step size in nm
+nsteps          = {nsteps}         ; Maximum number of minimization steps to perform
+
+; Output control
+nstxout         = 10            ; Save coordinates every 10 steps
+nstenergy       = 10            ; Save energies every 10 steps
+
+; Neighbor searching
+cutoff-scheme   = Verlet        ; Faster neighbor list calculation
+nstlist         = 10            ; Frequency of neighbor list update
+ns_type         = grid          ; Grid-based neighbor search
+rlist           = 1.0           ; Short-range neighbor list cutoff (nm)
+
+; Electrostatics and VDW
+coulombtype     = PME           ; Particle-Mesh Ewald for long-range electrostatics
+rcoulomb        = 1.0           ; Short-range electrostatic cutoff (nm)
+rvdw            = 1.0           ; Short-range Van der Waals cutoff (nm)
+
+; Constraints
+constraints     = none          ; No constraints for EM

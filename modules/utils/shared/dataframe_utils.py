@@ -1,9 +1,12 @@
 from functools import wraps
 from typing import Callable, List
 import pandas as pd
+<<<<<<< HEAD
 import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+=======
+>>>>>>> 91758eb (cleaned up)
 
 
 def dataframe_not_empty_check(
@@ -94,4 +97,8 @@ def convert_xlsx_to_csv(xlsx_file: str, csv_file: str, required_headers: list):
 
     # Save to CSV
     df.to_csv(csv_file, index=False)
+<<<<<<< HEAD
     logger.info(f"Conversion successful! Saved CSV: {csv_file}")
+=======
+    print(f"Conversion successful! Saved CSV: {csv_file}")
+>>>>>>> 91758eb (cleaned up)

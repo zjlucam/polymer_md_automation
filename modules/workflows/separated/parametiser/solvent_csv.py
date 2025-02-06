@@ -1,8 +1,12 @@
 from modules.workflows.separated.parametiser.solvent import SolventParametiser
 import pandas as pd
+<<<<<<< HEAD
 import logging
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
+=======
+
+>>>>>>> 91758eb (cleaned up)
 
 class SolventCSVParametiser:
 
@@ -21,6 +25,7 @@ class SolventCSVParametiser:
 
     def run(self):
         for _, solvent in self.solvent_df.iterrows():
+<<<<<<< HEAD
             try:
                 solvent_name = solvent["name"]
                 solvent_smiles = solvent["SMILES"]
@@ -39,3 +44,20 @@ class SolventCSVParametiser:
                 generator.run()
             except ValueError as e:
                 logger.error(f"ValueError in {solvent_name}: {e}")
+=======
+            solvent_name = solvent["name"]
+            solvent_smiles = solvent["SMILES"]
+            solvent_compressibility = solvent["compressibility"]
+            solvent_density = solvent["density"]
+
+            generator = SolventParametiser(
+                solvent_name=solvent_name,
+                solvent_smiles=solvent_smiles,
+                solvent_compressibility=solvent_compressibility,
+                solvent_density=solvent_density,
+                output_dir=self.output_dir,
+                verbose=self.verbose,
+                solvent_resname=self.solvent_resname,
+            )
+            generator.run()
+>>>>>>> 91758eb (cleaned up)

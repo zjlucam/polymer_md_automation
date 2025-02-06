@@ -1,0 +1,37 @@
+; Run parameters
+integrator          = md            ; Integrator type: Molecular Dynamics
+nsteps              = {nsteps}         ; Number of steps to simulate
+dt                  = 0.002         ; Time step (ps)
+
+; Output control
+nstxout             = 1000          ; Write coordinates to output every 1000 steps
+nstvout             = 1000          ; Write velocities to output every 1000 steps
+nstenergy           = 1000          ; Write energies to energy file every 1000 steps
+nstlog              = 1000          ; Write log file every 1000 steps
+nstfout       = 1000
+; Neighbor searching
+cutoff-scheme       = Verlet        ; Use Verlet lists for neighbor searching
+nstlist             = 10            ; Update neighbor list every 10 steps
+rlist               = 1.0           ; Neighbor list cutoff (nm)
+
+; Electrostatics
+coulombtype = reaction-field
+epsilon_rf = 80
+; van der Waals interactions
+vdwtype             = cutoff        ; Cut-off for van der Waals interactions
+rvdw                = 1.0           ; Cut-off for van der Waals (nm)
+
+; Temperature coupling
+tcoupl              = V-rescale     ; Temperature coupling using velocity rescaling
+tc-grps             = System        ; Coupling group
+tau_t               = 0.1           ; Time constant for coupling (ps)
+ref_t               = 300           ; Target temperature (K)
+
+; Pressure coupling
+pcoupl              = no            ; No pressure coupling during NVT
+
+; Constraints
+constraints         = h-bonds       ; Constrain all bonds involving hydrogen
+constraint_algorithm = LINCS        ; Linear constraint solver
+lincs_iter          = 1             ; Number of iterations to correct constraints
+lincs_order         = 4             ; Order of expansion for correcting rotational lengthening

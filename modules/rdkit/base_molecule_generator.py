@@ -13,9 +13,13 @@ class BaseMoleculeGenerator(ABC):
         pass
 
     def _convert_to_rdkit_molecule(self, smiles: str) -> Chem.Mol:
+<<<<<<< HEAD
         mol= Chem.MolFromSmiles(smiles)
         AllChem.AddHs(mol)
         return mol
+=======
+        return Chem.MolFromSmiles(smiles)
+>>>>>>> 91758eb (cleaned up)
 
     def _finalise_molecule(self, mol: Chem.Mol, uff_optimise: bool = True) -> Chem.Mol:
         AllChem.EmbedMolecule(mol)
@@ -28,6 +32,12 @@ class BaseMoleculeGenerator(ABC):
     def _generate_filename(self, **kwargs):
         pass
 
+<<<<<<< HEAD
+=======
+    def _add_hydrogens(self, molecule: Chem.Mol) -> Chem.Mol:
+        return Chem.AddHs(molecule)
+
+>>>>>>> 91758eb (cleaned up)
     def _save_as_pdb(
         self,
         molecule: Chem.Mol,

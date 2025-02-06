@@ -24,10 +24,16 @@ class FullEquilibrationWorkflow:
         workflow_step: BaseWorkflowStep,
         template_path: str,
         base_params: Dict[str, str],
+<<<<<<< HEAD
         additional_flags = ["-nt", "6", "-ntomp", "6", "-pin", "on"]
     ):
         """Add energy minimization step."""
         self.em_steps.append((step_name, workflow_step, template_path, base_params, additional_flags))
+=======
+    ):
+        """Add energy minimization step."""
+        self.em_steps.append((step_name, workflow_step, template_path, base_params))
+>>>>>>> 91758eb (cleaned up)
 
     def add_thermal_step(
         self,
@@ -35,11 +41,18 @@ class FullEquilibrationWorkflow:
         workflow_step: BaseWorkflowStep,
         template_path: str,
         base_params: Dict[str, str],
+<<<<<<< HEAD
         additional_flags =  ["-nt", "8", "-ntomp", "8", "-pin", "on"]
     ):
         """Add thermal steps (e.g., NVT, NPT)."""
         self.thermal_steps.append(
             (step_name, workflow_step, template_path, base_params, additional_flags)
+=======
+    ):
+        """Add thermal steps (e.g., NVT, NPT)."""
+        self.thermal_steps.append(
+            (step_name, workflow_step, template_path, base_params)
+>>>>>>> 91758eb (cleaned up)
         )
 
     def run(
@@ -72,7 +85,11 @@ class FullEquilibrationWorkflow:
         final_step_name = None
 
         # Run all EM steps first
+<<<<<<< HEAD
         for step_name, step, template_path, base_params, additional_flags in self.em_steps:
+=======
+        for step_name, step, template_path, base_params in self.em_steps:
+>>>>>>> 91758eb (cleaned up)
             current_gro_path = step.run(
                 step_name=step_name,
                 mdp_template_path=template_path,
@@ -86,7 +103,10 @@ class FullEquilibrationWorkflow:
                 save_intermediate_gro=save_intermediate_gro,
                 save_intermediate_log=save_intermediate_log,
                 verbose=verbose,
+<<<<<<< HEAD
                 additional_flags=additional_flags
+=======
+>>>>>>> 91758eb (cleaned up)
             )
             final_step_name = step_name  # Track the last step name
 
@@ -97,7 +117,11 @@ class FullEquilibrationWorkflow:
 
         # Run thermal steps with varying parameters
         for varying_params in varying_params_list:
+<<<<<<< HEAD
             for step_name, step, template_path, base_params, additional_flags in self.thermal_steps:
+=======
+            for step_name, step, template_path, base_params in self.thermal_steps:
+>>>>>>> 91758eb (cleaned up)
                 # Merge base and varying parameters
                 params = {**base_params, **varying_params}
 
@@ -115,7 +139,10 @@ class FullEquilibrationWorkflow:
                     save_intermediate_gro=save_intermediate_gro,
                     save_intermediate_log=save_intermediate_log,
                     verbose=verbose,
+<<<<<<< HEAD
                     additional_flags=additional_flags
+=======
+>>>>>>> 91758eb (cleaned up)
                 )
                 final_step_name = step_name  # Track the last step name
 

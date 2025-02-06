@@ -166,8 +166,11 @@ class SolventEquilibriationWorkflow(BaseWorkflow):
         )
         solvent_box_gro = self.check_packmol_cache()
         if not solvent_box_gro:
+<<<<<<< HEAD
             print("!!!!!!!!!!!!!!!1")
             print(parameterised_files.gro_path)
+=======
+>>>>>>> 91758eb (cleaned up)
             solvent_box_gro = self._create_solvent_box_gro(
                 parameterised_files.gro_path,
                 PREPROCESSED_PACKMOL_DIR,
@@ -189,8 +192,11 @@ class SolventEquilibriationWorkflow(BaseWorkflow):
             output_itp_name=self.itp_name,
         )
         for temperature in self.temperatures:
+<<<<<<< HEAD
             print("!!!!!!!!!!!!!!!2")
             print(reformatted_files.gro_path)
+=======
+>>>>>>> 91758eb (cleaned up)
             output_paths = self._equilibriate(
                 gro_path=reformatted_files.gro_path,
                 top_path=reformatted_files.top_path,

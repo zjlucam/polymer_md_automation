@@ -145,7 +145,11 @@ def add_n_parallel_polymers_to_solvent(
                 )
             )
             if polymer_distance < cutoff:
+<<<<<<< HEAD
                 logger.warning(f"⚠️ Polymers {i} and {j} are too close! Adjusting placement...")
+=======
+                print(f"⚠️ Polymers {i} and {j} are too close! Adjusting placement...")
+>>>>>>> 91758eb (cleaned up)
                 polymers[j].atoms.translate(min_distance)
 
     # Identify overlapping solvent molecules
@@ -157,7 +161,11 @@ def add_n_parallel_polymers_to_solvent(
     overlapping_residues = u_solvent.atoms[overlapping_atoms].residues.resids
 
     if overlapping_residues is None or len(overlapping_residues) == 0:
+<<<<<<< HEAD
         logger.warning(" No overlapping residues detected, keeping all solvent molecules.")
+=======
+        print("⚠️ No overlapping residues detected, keeping all solvent molecules.")
+>>>>>>> 91758eb (cleaned up)
         non_overlapping_solvent = u_solvent.atoms  # Keep all solvent molecules
     else:
         # Select non-overlapping solvent molecules

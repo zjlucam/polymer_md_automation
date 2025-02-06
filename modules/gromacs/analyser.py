@@ -26,6 +26,10 @@ class GromacsAnalyser:
         output_dir: str = TEMP_DIR,
     ):
         self.outputs = outputs
+<<<<<<< HEAD
+=======
+        print(self.outputs)
+>>>>>>> 91758eb (cleaned up)
         self.output_dir = output_dir
         os.makedirs(self.output_dir, exist_ok=True)
 
@@ -201,8 +205,12 @@ class GromacsAnalyser:
         p.wait()
 
         if not os.path.exists(output_path):
+<<<<<<< HEAD
             logger.warning(f"Output file not found: {output_path}")
             E2E_mean, E2E_std = 0, 0
+=======
+            raise FileNotFoundError(f"Output file not found: {output_path}")
+>>>>>>> 91758eb (cleaned up)
 
         try:
             data = np.loadtxt(output_path, comments=("#", "@"))
@@ -210,5 +218,9 @@ class GromacsAnalyser:
             E2E_std = np.std(data[:, 1])
             return E2E_mean, E2E_std
         except Exception as e:
+<<<<<<< HEAD
             logger.error(f"Error reading end-to-end distance file: {e}")
             return 0, 0
+=======
+            raise RuntimeError(f"Error reading end-to-end distance file: {e}")
+>>>>>>> 91758eb (cleaned up)

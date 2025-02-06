@@ -1,6 +1,9 @@
 import pandas as pd
 import pandas as pd
+<<<<<<< HEAD
 import string
+=======
+>>>>>>> 91758eb (cleaned up)
 import re
 
 
@@ -129,15 +132,22 @@ class PolymerITPScaler:
             if match:
                 base_name, number = match.groups()
                 if base_name not in atom_counts:
+<<<<<<< HEAD
                     atom_counts[base_name] =  self.atom_start_index or 0 
                     
 
                 atom_index, atom_counts[base_name] = self._num_to_alphabet_gromacs_name(atom_counts[base_name])
                 df.at[i, "atom"] = f"{base_name}{atom_index}"
+=======
+                    atom_counts[base_name] = self.atom_start_index or 0  # Start count
+
+                df.at[i, "atom"] = f"{base_name}{atom_counts[base_name]}"
+>>>>>>> 91758eb (cleaned up)
                 atom_counts[base_name] += 1  # Increment count
 
         self.sections["atoms"] = df
 
+<<<<<<< HEAD
     def _num_to_alphabet_gromacs_name(self, index):
         if index <100:
             return index, index
@@ -146,6 +156,8 @@ class PolymerITPScaler:
             sub_index = (index-100)%10
             letter = string.ascii_uppercase[base_index]
             return f"{letter}{sub_index}", index
+=======
+>>>>>>> 91758eb (cleaned up)
     def _process_sections(self):
         """Processes all relevant sections, shifts indices, and duplicates the middle section."""
         num_cols = {

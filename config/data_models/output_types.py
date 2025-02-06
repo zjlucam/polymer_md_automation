@@ -25,7 +25,10 @@ class GromacsPaths:
         :return: A list of file paths.
         :rtype: List[Optional[str]]
         """
+<<<<<<< HEAD
         print("!!!!!!!!!!!!!!!4")
+=======
+>>>>>>> 91758eb (cleaned up)
         return [self.itp_path, self.gro_path, self.top_path, self.posre_path]
 
 

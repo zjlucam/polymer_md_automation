@@ -119,8 +119,12 @@ class PolymerEquilibriationWorkflow(BaseWorkflow):
         self.actual_num_units = polymer_workflow.actual_num_units
         outputs = polymer_workflow.run()
         self.polymer = polymer_workflow.long_polymer_generator
+<<<<<<< HEAD
         if outputs is None:
             raise ValueError("PolymerGeneratorWorkflow.run() returned None!")
+=======
+
+>>>>>>> 91758eb (cleaned up)
         return outputs
 
     def check_polymer_cache(self, temperature: float) -> Optional[GromacsOutputs]:
@@ -173,15 +177,21 @@ class PolymerEquilibriationWorkflow(BaseWorkflow):
 
     def _run_per_temp(self, temperature: float) -> GromacsOutputs:
         solvent_box = self._retrieve_solvent_box(temperature)
+<<<<<<< HEAD
         parameterised_polymer = self._retrieve_parameterised_polymer()
         polymer_in_solvent = add_polymer_to_solvent(
             polymer_file=parameterised_polymer.gro_path,
+=======
+        polymer_in_solvent = add_polymer_to_solvent(
+            polymer_file=self.parameterised_polymer.gro_path,
+>>>>>>> 91758eb (cleaned up)
             solvent_file=solvent_box.gro,
             output_dir=TEMP_DIR,
             output_name=self.polymer_in_solvent_name,
             cutoff=self.polymer_addition_cutoff,
         )
         initial_minim_files = self._prepare_solute_files(
+<<<<<<< HEAD
             solute_itp_file=parameterised_polymer.itp_path,
             solvent_itp_file=solvent_box.itp,
             solvent_box_gro_file=polymer_in_solvent,
@@ -192,6 +202,14 @@ class PolymerEquilibriationWorkflow(BaseWorkflow):
         print("!!!!!!!!5")
         print(initial_minim_files.gro_path)
         print("!!!!!!!!!!!!!5")
+=======
+            solute_itp_file=self.parameterised_polymer.itp_path,
+            solvent_itp_file=solvent_box.itp,
+            solvent_box_gro_file=polymer_in_solvent,
+            input_top_file=self.parameterised_polymer.top_path,
+            output_dir=TEMP_DIR,
+        )
+>>>>>>> 91758eb (cleaned up)
         _, outputs = self.minim_workflow.run(
             input_gro_path=initial_minim_files.gro_path,
             input_topol_path=initial_minim_files.top_path,
@@ -223,8 +241,11 @@ class PolymerEquilibriationWorkflow(BaseWorkflow):
             input_top_file=self.parameterised_polymer.top_path,
             output_dir=TEMP_DIR,
         )
+<<<<<<< HEAD
         print("!!!!!!!6")
         print(prepared_files)
+=======
+>>>>>>> 91758eb (cleaned up)
         varying_params_list = self._create_varying_params_list(temperature)
         _, outputs = self.full_workflow.run(
             input_gro_path=prepared_files.gro_path,
@@ -266,7 +287,10 @@ class PolymerEquilibriationWorkflow(BaseWorkflow):
         output_solvent_itp_name: Optional[str] = None,
         parser: GromacsParser = GromacsParser(),
     ) -> GromacsPaths:
+<<<<<<< HEAD
         parser = GromacsParser()
+=======
+>>>>>>> 91758eb (cleaned up)
         solute_molecule_name = self.polymer_name
 
         gro_handler = get_gro_handler(solvent_box_gro_file)

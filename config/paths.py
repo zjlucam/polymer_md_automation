@@ -3,7 +3,12 @@ from enum import Enum
 import dataclasses
 from typing import Optional
 
+<<<<<<< HEAD
 TEMP_DIR = "temp"
+=======
+job_id = os.getenv("SLURM_JOB_ID", "local_run")
+TEMP_DIR = f"temp_{job_id}"
+>>>>>>> 91758eb (cleaned up)
 LOG_DIR = "logs"
 TOPOL_NAME = "topol.top"
 MAIN_CACHE_DIR = "cache"

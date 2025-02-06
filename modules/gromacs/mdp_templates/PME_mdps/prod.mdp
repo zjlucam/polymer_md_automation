@@ -1,0 +1,49 @@
+; Run control
+integrator              = md        ; Molecular dynamics integrator
+nsteps                  = {nsteps}   ; Number of steps (2 fs * 5000000 = 10 ns)
+dt                      = {dt}     ; Time step in ps
+
+; Output control
+nstxout                = 1000       ; Save coordinates every 1000 steps
+nstvout                = 1000       ; Save velocities every 1000 steps
+nstenergy             = 1000       ; Save energies every 1000 steps
+nstlog                = 1000       ; Update the log file every 1000 steps
+nstxout-compressed    = 1000       ; Compressed trajectory output every 1000 steps
+nstfout       = 1000
+; Neighbor searching
+cutoff-scheme          = Verlet     ; Neighbor list scheme
+nstlist                = 10         ; Update neighbor list every 10 steps
+rlist                  = 1.0        ; Neighbor list cutoff (nm)
+
+; Electrostatics and van der Waals
+coulombtype            = PME        ; Particle Mesh Ewald for long-range electrostatics
+rcoulomb               = 1.0        ; Short-range electrostatic cutoff (nm)
+rvdw                   = 1.0        ; Short-range van der Waals cutoff (nm)
+
+; Temperature coupling
+tcoupl                 = V-rescale  ; Modified Berendsen thermostat
+tc-grps                = System     ; Group for temperature coupling
+tau_t                  = 0.1        ; Time constant for coupling (ps)
+ref_t                  = 300        ; Reference temperature (K)
+
+; Pressure coupling
+pcoupl                 = Parrinello-Rahman ; Pressure coupling algorithm
+pcoupltype             = isotropic  ; Isotropic pressure coupling
+tau_p                  = 2.0        ; Time constant for pressure coupling (ps)
+ref_p                  = 1.0        ; Reference pressure (bar)
+compressibility        = 4.5e-5     ; Compressibility of water (bar^-1)
+
+; Constraints
+constraints            = h-bonds    ; Constrain bonds involving H
+constraint_algorithm   = LINCS      ; Constraint algorithm
+continuation           = yes        ; Continuation after equilibration
+lincs_iter             = 1          ; Number of LINCS iterations
+lincs_order            = 4          ; LINCS order
+
+; Periodic boundary conditions
+pbc                    = xyz        ; 3D periodic boundary conditions
+
+; Center of mass motion removal
+nstcomm                = 100        ; Remove COM motion every 100 steps
+comm-mode              = Linear     ; COM removal mode
+comm-grps              = System     ; Group for COM removal

@@ -1,0 +1,53 @@
+; Run Control
+integrator               = md             ; Molecular dynamics integrator
+nsteps                   = {nsteps}          ; 100 ps simulation with dt=0.002 ps
+dt                       = {dt}        ; 2 fs time step
+
+; Output Control
+nstxout                 = 1000           ; Save coordinates every 2 ps
+nstvout                 = 1000           ; Save velocities every 2 ps
+nstenergy               = 100            ; Save energies every 0.2 ps
+nstlog                  = 1000           ; Save log every 2 ps
+nstfout       = 100
+; Neighbor Searching
+cutoff-scheme           = Verlet         ; Verlet neighbor searching
+nstlist                 = 10             ; Update neighbor list every 20 fs
+rlist                   = 1.0            ; Short-range neighbor list cutoff
+
+; Electrostatics
+coulombtype = reaction-field
+epsilon_rf = 80
+; Van der Waals
+vdwtype                 = cutoff         ; Cutoff for van der Waals interactions
+rcoulomb = 1.0    ; Must be equal to rvdw to work with Verle
+rvdw                    = 1.0            ; Short-range van der Waals cutoff
+
+; Temperature Coupling
+tcoupl                  = V-rescale      ; Velocity rescaling thermostat
+tc-grps                 = System         ; Single coupling group
+tau_t                   = 0.1            ; Time constant for temperature coupling
+ref_t                   = {temp}            ; Target temperature (K)
+
+; Pressure Coupling
+pcoupl                  = c-rescale      ; More stable and generates a proper NPT ensemble
+pcoupltype              = isotropic
+tau_p                   = 2.0            ; Time constant for pressure coupling
+ref_p                   = 1.0            ; Reference pressure (bar)
+compressibility         = {compressibility}    ; Water compressibility (1/bar)
+
+; Constraints
+constraints             = h-bonds        ; Constrain bonds to hydrogens only
+continuation            = yes            ; Continue from previous run
+constraint_algorithm    = LINCS          ; LINCS for constraints
+lincs_iter              = 1              ; Number of LINCS iterations
+lincs_order             = 4              ; LINCS order
+
+; Periodic Boundary Conditions
+pbc                     = xyz            ; 3D periodic boundary conditions
+
+; Dispersion Correction
+DispCorr                = EnerPres       ; Energy and pressure correction
+
+; Energy Minimization
+emtol                   = 1000.0         ; Convergence criteria for minimization
+emstep                  = 0.01           ; Minimization step size

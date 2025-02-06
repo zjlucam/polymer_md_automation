@@ -234,9 +234,15 @@ class PolymerParametiser(BaseWorkflow):
         pdb_basename = os.path.splitext(os.path.basename(pdb))[0]
         output_dir = os.path.join(output_dir, pdb_basename)
         gro = EditconfPDBtoGROConverter().run(pdb, output_dir)
+<<<<<<< HEAD
         #gro_path = os.path.join(output_dir, f"{self.acpype_output_basename}.gro")
         #os.rename(gro, gro_path)
         #gro = gro_path
+=======
+        gro_path = os.path.join(output_dir, f"{self.acpype_output_basename}.gro")
+        os.rename(gro, gro_path)
+        gro = gro_path
+>>>>>>> 91758eb (cleaned up)
         self.add_box_dim(gro_file=gro, padding=self.box_dim_padding)
         atom_start_index = self._determine_atom_start_index(gro)
         itp_output_path = self._get_itp_path(gro)
@@ -322,10 +328,15 @@ class PolymerParametiser(BaseWorkflow):
 
     @staticmethod
     def add_box_dim(
+<<<<<<< HEAD
         gro_file, padding: float = 0.1
     ) -> List[float]:
         parser=GromacsParser()
         gro_handler=GroHandler()
+=======
+        gro_file, padding: float = 0.1, parser=GromacsParser(), gro_handler=GroHandler()
+    ) -> List[float]:
+>>>>>>> 91758eb (cleaned up)
         sections = parser.parse(gro_file)
         first_key = next(iter(sections))  # Get the first key
         gro_section = sections[first_key]

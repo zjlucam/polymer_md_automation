@@ -53,15 +53,21 @@ class JoinedAtomisticPolymerWorkflow(BaseWorkflow):
         pos_ion_name: str = "NA",
         neg_ion_name: str = "CL",
         polymer_name: str = "UNL",
+<<<<<<< HEAD
         polymer_mol_name: str = "POLY",
+=======
+>>>>>>> 91758eb (cleaned up)
         sol_resname: str = "SOL",
         verbose: bool = True,
         cleanup: bool = True,
         confirm_temp_deletion: bool = True,
         box_incriments: float = 5,
     ):
+<<<<<<< HEAD
         self.polymer_mol_name = polymer_mol_name
         self.cleanup_temp = cleanup
+=======
+>>>>>>> 91758eb (cleaned up)
         self.csv_file_path = f"{csv_file_path}.csv"
         self.solvent_smiles = solvent_smiles
         self.cleanup = cleanup
@@ -85,7 +91,10 @@ class JoinedAtomisticPolymerWorkflow(BaseWorkflow):
         self.neg_ion_name = neg_ion_name
         self.polymer_name = polymer_name
         self.verbose = verbose
+<<<<<<< HEAD
         self.data = None
+=======
+>>>>>>> 91758eb (cleaned up)
         self.box_size_nm = self._get_min_box_size(box_incriments=box_incriments)
 
     def _run_simulations(self, temperature: float) -> GromacsOutputs:
@@ -101,7 +110,11 @@ class JoinedAtomisticPolymerWorkflow(BaseWorkflow):
             cache=self.cache,
             pos_ion_name=self.pos_ion_name,
             neg_ion_name=self.neg_ion_name,
+<<<<<<< HEAD
             polymer_name=self.polymer_mol_name,
+=======
+            polymer_name=self.polymer_name,
+>>>>>>> 91758eb (cleaned up)
             verbose=self.verbose,
             cleanup_log=True,
             cleanup_temp=False,
@@ -165,7 +178,10 @@ class JoinedAtomisticPolymerWorkflow(BaseWorkflow):
             "E2E_std": E2E_std,
         }
         logger.info(f"Row data: {row_data}")
+<<<<<<< HEAD
         self.data = row_data
+=======
+>>>>>>> 91758eb (cleaned up)
         csv = self._write_csv_row(row_data)
         return csv
 
@@ -174,7 +190,11 @@ class JoinedAtomisticPolymerWorkflow(BaseWorkflow):
             self._run_per_temp(temperature=temperature)
         if self.cleanup_temp:
             delete_directory(
+<<<<<<< HEAD
                 TEMP_DIR, verbose=self.verbose, confirm=False
+=======
+                TEMP_DIR, verbose=self.verbose, confirm=self.confirm_temp_deletion
+>>>>>>> 91758eb (cleaned up)
             )
 
         return self.csv_file_path

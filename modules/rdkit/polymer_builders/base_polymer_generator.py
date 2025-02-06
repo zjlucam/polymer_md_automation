@@ -10,9 +10,13 @@ from modules.utils.shared.file_utils import (
 )
 import os
 from itertools import cycle
+<<<<<<< HEAD
 import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+=======
+
+>>>>>>> 91758eb (cleaned up)
 
 class BasePolymerGenerator(ABC):
 
@@ -145,6 +149,7 @@ class BasePolymerGenerator(ABC):
             }
         )
 
+<<<<<<< HEAD
     @staticmethod
     def inspect_bonds(monomer_smiles: str):
         monomer = Chem.MolFromSmiles(monomer_smiles)
@@ -165,11 +170,20 @@ class BasePolymerGenerator(ABC):
         
         Only carbon-carbon double bonds are considered for breaking.
 
+=======
+    def _create_monomer_residue(
+        self, monomer_smiles: str
+    ) -> Tuple[Chem.Mol, List[int], str]:
+        """
+        Creates a monomer residue from the given SMILES string, identifies open sites,
+        and generates possible end residues with hydrogen.
+>>>>>>> 91758eb (cleaned up)
         :param monomer_smiles: The SMILES string representing the monomer.
         :return: A tuple containing the monomer residue and its open bonding sites.
         """
         monomer = Chem.MolFromSmiles(monomer_smiles)
         monomer = Chem.AddHs(monomer)  # Add hydrogens to the molecule
+<<<<<<< HEAD
         #self.inspect_bonds(monomer_smiles=monomer_smiles)
         double_bonds = []
         for bond in monomer.GetBonds():
@@ -194,10 +208,29 @@ class BasePolymerGenerator(ABC):
         rw_monomer = Chem.RWMol(monomer)
 
         # Select the only carbon-carbon double bond
+=======
+
+        double_bonds = []
+        for bond in monomer.GetBonds():
+            if (
+                bond.GetBondType() == Chem.rdchem.BondType.DOUBLE
+                and not bond.GetIsAromatic()
+                and not bond.IsInRing()
+            ):
+                double_bonds.append(bond)
+
+        if len(double_bonds) > 1:
+            raise ValueError("Monomer contains more than one double bond.")
+
+        rw_monomer = Chem.RWMol(monomer)
+        # open_sites = []
+
+>>>>>>> 91758eb (cleaned up)
         bond = double_bonds[0]
         atom1 = bond.GetBeginAtomIdx()
         atom2 = bond.GetEndAtomIdx()
 
+<<<<<<< HEAD
         # Break the double bond and replace with a single bond
         rw_monomer.RemoveBond(atom1, atom2)
         rw_monomer.AddBond(atom1, atom2, Chem.rdchem.BondType.SINGLE)
@@ -209,11 +242,22 @@ class BasePolymerGenerator(ABC):
         open_sites = [atom1, atom2]
 
         # Sanitize the molecule to ensure proper valence and bonding
+=======
+        rw_monomer.RemoveBond(atom1, atom2)
+        rw_monomer.AddBond(atom1, atom2, Chem.rdchem.BondType.SINGLE)
+        rw_monomer.GetAtomWithIdx(atom1).SetNumExplicitHs(0)
+        rw_monomer.GetAtomWithIdx(atom2).SetNumExplicitHs(0)
+        open_sites = (atom1, atom2)
+
+>>>>>>> 91758eb (cleaned up)
         Chem.SanitizeMol(rw_monomer)
 
         return rw_monomer, open_sites
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 91758eb (cleaned up)
     def _add_monomer_to_polymer(
         self,
         polymer: Chem.RWMol,
@@ -415,7 +459,11 @@ class BasePolymerGenerator(ABC):
         :param label: A custom label for printing.
         """
         if not mol:
+<<<<<<< HEAD
             logger.error(f"{label}: Molecule is None!")
+=======
+            print(f"[ERROR] {label}: Molecule is None!")
+>>>>>>> 91758eb (cleaned up)
             return
 
         # Convert RWMol to Mol if needed
@@ -429,6 +477,7 @@ class BasePolymerGenerator(ABC):
         mol_with_h = Chem.AddHs(mol)
         smiles_with_h = Chem.MolToSmiles(mol_with_h, isomericSmiles=True)
 
+<<<<<<< HEAD
         logger.info(
             f"[DEBUG] {label} (unchanged)   : {Chem.MolToSmiles(mol, isomericSmiles=True)}"
         )
@@ -438,6 +487,17 @@ class BasePolymerGenerator(ABC):
         # Print valency of each atom
         for atom in mol.GetAtoms():
             logger.info(
+=======
+        print(
+            f"[DEBUG] {label} (unchanged)   : {Chem.MolToSmiles(mol, isomericSmiles=True)}"
+        )
+        print(f"[DEBUG] {label} (No Hs)   : {smiles_without_h}")
+        print(f"[DEBUG] {label} (With Hs) : {smiles_with_h}")
+
+        # Print valency of each atom
+        for atom in mol.GetAtoms():
+            print(
+>>>>>>> 91758eb (cleaned up)
                 f"Atom {atom.GetIdx()} ({atom.GetSymbol()}): "
                 f"Valency {atom.GetTotalValence()} | "
                 f"Explicit Hs {atom.GetTotalNumHs()}"
