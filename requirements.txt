@@ -1,0 +1,14 @@
+matplotlib==3.10.1
+MDAnalysis==2.8.0
+numpy==2.2.3
+pandas==2.2.3
+PyYAML==6.0.2
+ruamel.base==1.0.0
+scipy==1.15.2
+rdkit==2023.09.5  
+openbabel==3.1.1 
+gromacs==2024.1 
+acpype==2023.1 
+moltemplate==2.8.3 
+packmol==20.14.2  
+openmscg==1.0.0  

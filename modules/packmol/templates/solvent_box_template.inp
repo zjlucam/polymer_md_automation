@@ -1,0 +1,9 @@
+tolerance 1.5
+filetype pdb
+
+output {output_file}
+
+structure {solvent_file}
+  number {num_molecules}
+  inside box 0.0 0.0 0.0 {box_size_x} {box_size_y} {box_size_z}
+end structure
