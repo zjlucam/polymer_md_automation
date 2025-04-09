@@ -1,5 +1,9 @@
 # Automated Polymer Simulations
 
+Reina Zheng, Zheng Jie Liew 
+
+University of Cambridge, Department of Chemical Engineering and Biotechnology
+
 This README is a work in progress.
 
 This repo contains code for automating GROMACS molecular dynamics simulation, currently capable of handling addition homopolymers and simple alternating copolymers.
